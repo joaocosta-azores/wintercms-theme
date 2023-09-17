@@ -1,0 +1,9 @@
+name: Base
+description: 'Base WinterCMS theme to start developing.'
+author: JohnnyDevv
+homepage: 'https://github.com/joaocosta-azores/wintercms-theme'
+code: ''
+require:
+	- Winter.Builder
+	- Winter.Translate
+	- Winter.Pages

@@ -1,0 +1,100 @@
+description = "Base"
+==
+<?
+function onStart()
+{
+    $this['meta_title_prefix'] = "Base Theme";
+    $this->page->meta_author = "asd";
+    $this['meta_twitter_site'] = "";
+}
+?>
+==
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/Website" lang="{% if activeLocale %}{{ activeLocale }}{% else %}pt{% endif %}">
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXX-Y"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-XXXXX-Y');
+    </script>
+
+    <meta charset="utf-8">
+    <title>{{ meta_title_prefix }} | {{ this.page.meta_title|raw }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="{{ this.page.meta_author }}">
+
+    <meta itemprop="name" content="{{ meta_title_prefix }} | {{ this.page.meta_title|raw }}">
+    <meta itemprop="description" content="{{ this.page.meta_description|raw }}">
+    <meta itemprop="image" content="{% if this.page.image %}{{this.page.image}}{% else %}{{ 'assets/icon/meta_thumbnail.png'|theme }}{% endif %}">
+    <meta itemprop="url" content="{{ this.page.id | page }}">
+
+    <!-- OpenGraph - Facebook, Social -->
+    <meta property="og:title" content="{{ meta_title_prefix }} | {{ this.page.meta_title|raw }}">
+    <meta property="og:description" content="{{ this.page.meta_description|raw|escape }}">
+    <meta property="og:site_name" content="{{ this.page.meta_title|raw }}">
+    <meta property="og:image" content="{% if this.page.og_image %}{{this.page.og_image}}{% else %}{{ 'assets/icon/banner-1200x630.png'|theme }}{% endif %}">
+    <meta property="og:image:width" content="{% if this.page.og_image_width %}{{this.page.og_image_width}}{% else %}1200{% endif %}">
+    <meta property="og:image:height" content="{% if this.page.og_image_height %}{{this.page.og_image_width}}{% else %}630{% endif %}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ this.page.id | page }}">
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:site" content="{{ meta_twitter_site }}">
+    <meta property="twitter:title" content="{{ meta_title_prefix }} | {{ this.page.meta_title|raw }}">
+    <meta property="twitter:description" content="{{ this.page.meta_description|raw|escape }}">
+    <meta property="twitter:image" content="{% if this.page.twitter_image %}{{this.page.twitter_image}}{% else %}{{ 'assets/icon/twittercard-1500x785.png'|theme }}{% endif %}">
+
+
+    <!-- Standard Favourite Icons, META Thumbnail for Facebook and Smartphone Icons, case study - tinyurl.com/4gv5zse -->
+    <link rel="icon" type="image/png" href="{{ 'assets/icon/favicon.png'|theme }}">
+    <!-- META Thumbnail -->
+    <link rel="image_src" href="{{ 'assets/icon/meta_thumbnail.png'|theme }}">
+    <!-- iPhone 5, iPad 3 (w/ Retina Display) -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ 'assets/icon/apple-touch-icon-144x144-precomposed.png'|theme }}">
+    <!-- iPhone 4, 4S, iPad 2 -->
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ 'assets/icon/apple-touch-icon-114x114-precomposed.png'|theme }}">
+    <!-- First Generation iPad -->
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ 'assets/icon/apple-touch-icon-72x72-precomposed.png'|theme }}">
+    <!-- non-Retina iPhone, iPod Touch, BlackBerry and Android 2.1+ -->
+    <link rel="apple-touch-icon-precomposed" href="{{ 'assets/icon/apple-touch-icon-precomposed.png'|theme }}">
+
+    <!-- General SEO, Canonical and Permalinking -->
+    <meta name="description" content="{{ this.page.meta_description }}">
+    <meta name="keywords" content="{{ this.page.keywords }}">
+    <meta name="author" content="{{ this.page.meta_author }}">
+    <meta name="robots" content="index,follow">
+    <link rel="canonical" href="{{ ''|page }}"/>
+
+    <meta name="theme-color" content="#f5f5f5">
+
+    <link href="{{ [
+    'assets/css/theme.css'
+    ]|theme }}" rel="stylesheet">
+</head>
+<body id="page-{{ this.page.id }}">
+
+    <!--[if lt IE 7]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    {% partial "site/header" %}
+
+    {% page %}
+
+    {% partial "site/footer" %}
+
+    <!-- Scripts -->
+    <script src="{{ [
+        'assets/js/theme.js',
+        '@framework',
+        '@framework.extras'
+    ]|theme }}"></script>
+    {% scripts %}
+    {% styles %}
+
+</body>
+</html>
